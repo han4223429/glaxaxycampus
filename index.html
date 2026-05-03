@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Galaxy Campus - 홈</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#004fd6",
+                      "secondary": "#5400c3",
+                      "tertiary": "#006379",
+                      "background": "#f8f9fb",
+                      "on-background": "#191c1e",
+                      "surface": "#f8f9fb",
+                      "on-surface": "#191c1e",
+                      "on-surface-variant": "#424655",
+                      "outline": "#737687",
+                      "outline-variant": "#c3c5d8",
+                      "surface-container": "#edeef0",
+                      "surface-container-low": "#f2f4f6",
+                      "surface-container-highest": "#e1e2e4",
+                      "primary-container": "#2167ff",
+                      "on-primary": "#ffffff",
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "1rem",
+                      "xl": "1.5rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-margin": "20px",
+                      "inline-gap": "12px",
+                      "card-padding": "20px",
+                      "section-padding": "40px",
+                      "stack-gap": "24px"
+              },
+              "fontFamily": {
+                      "sans": ["Pretendard", "sans-serif"],
+                      "jakarta": ["Plus Jakarta Sans", "sans-serif"],
+              }
+            }
+          }
+        }
+    </script>
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body { min-height: 100dvh; font-family: 'Pretendard', sans-serif; overflow-x: hidden; }
+        .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .side-menu-transition { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+        .overlay-transition { transition: opacity 0.3s ease; }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-24 md:pb-10">
+
+    <!-- Side Menu Drawer (Mobile) -->
+    <div id="side-menu-overlay" class="fixed inset-0 bg-black/50 z-[60] opacity-0 pointer-events-none overlay-transition md:hidden" onclick="toggleMenu()"></div>
+    <div id="side-menu" class="fixed top-0 left-0 bottom-0 w-[280px] bg-white z-[70] -translate-x-full side-menu-transition md:hidden shadow-2xl">
+        <div class="p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-8">
+                <img alt="Galaxy Campus" class="h-6" src="https://lh3.googleusercontent.com/aida/ADBb0ujVfVbtmDq_nJU_HYSUO1IRHz_Pn3pfRFviVaT1lcx1a2278eu8dQ4XFWBpB7PG88VLvLh69pTeoHtQzcVhUKk17XtDx-gYC7Z1y2YkuV9gBHif3Z5Fhdwq3D1I-4pZRVs_1QmHeb1t94bY8tLQriyafLTr89QLD0HJkaZbSSOyvE4rn2qCFCatzsLmUYIMpcoaM5Uj7Co_JTTAltXOW4XRv7HJiu9-bDNBNWHkyq4z1vFibOzFX-khJsPjAYFjmIBnubuCRBd_Xw"/>
+                <button onclick="toggleMenu()" class="text-on-surface-variant"><span class="material-symbols-outlined">close</span></button>
+            </div>
+            
+            <div class="space-y-2 flex-1">
+                <a href="index.html" class="flex items-center gap-4 p-4 rounded-2xl bg-blue-50 text-primary font-bold">
+                    <span class="material-symbols-outlined">home</span> 홈
+                </a>
+                <a href="store/code.html" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-surface-container transition-colors font-medium">
+                    <span class="material-symbols-outlined">shopping_bag</span> 스토어
+                </a>
+                <a href="community/code.html" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-surface-container transition-colors font-medium">
+                    <span class="material-symbols-outlined">group</span> 커뮤니티
+                </a>
+                <a href="profile/code.html" class="flex items-center gap-4 p-4 rounded-2xl hover:bg-surface-container transition-colors font-medium">
+                    <span class="material-symbols-outlined">person</span> 내 정보
+                </a>
+            </div>
+
+            <div class="mt-auto pt-8 border-t border-surface-container-highest">
+                <h4 class="text-[10px] font-bold text-outline uppercase tracking-wider mb-4 px-4">혜택 & 이벤트</h4>
+                <div class="space-y-1">
+                    <a href="#" class="flex items-center gap-4 p-4 text-sm font-medium hover:text-primary transition-colors">이달의 챌린지</a>
+                    <a href="#" class="flex items-center gap-4 p-4 text-sm font-medium hover:text-primary transition-colors">쿠폰함</a>
+                    <a href="#" class="flex items-center gap-4 p-4 text-sm font-medium hover:text-primary transition-colors">고객지원</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header: Consistent with original mobile design but adapts for desktop -->
+    <header class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-white/20 shadow-sm flex justify-between items-center px-5 h-14">
+        <div class="max-w-screen-xl mx-auto w-full flex justify-between items-center">
+            <!-- Left: Menu (Mobile) / Logo (Desktop) -->
+            <div class="flex items-center gap-4">
+                <button onclick="toggleMenu()" aria-label="Menu" class="md:hidden text-on-background hover:opacity-80 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+                <img alt="Galaxy Campus" class="h-6 md:h-7 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/ADBb0ujVfVbtmDq_nJU_HYSUO1IRHz_Pn3pfRFviVaT1lcx1a2278eu8dQ4XFWBpB7PG88VLvLh69pTeoHtQzcVhUKk17XtDx-gYC7Z1y2YkuV9gBHif3Z5Fhdwq3D1I-4pZRVs_1QmHeb1t94bY8tLQriyafLTr89QLD0HJkaZbSSOyvE4rn2qCFCatzsLmUYIMpcoaM5Uj7Co_JTTAltXOW4XRv7HJiu9-bDNBNWHkyq4z1vFibOzFX-khJsPjAYFjmIBnubuCRBd_Xw"/>
+            </div>
+
+            <!-- Middle: Navigation (Desktop Only) -->
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="index.html" class="text-primary font-bold border-b-2 border-primary pb-1">홈</a>
+                <a href="store/code.html" class="text-on-surface-variant hover:text-primary transition-colors font-medium">스토어</a>
+                <a href="community/code.html" class="text-on-surface-variant hover:text-primary transition-colors font-medium">커뮤니티</a>
+                <a href="profile/code.html" class="text-on-surface-variant hover:text-primary transition-colors font-medium">내 정보</a>
+            </nav>
+
+            <!-- Right: Search/Actions -->
+            <div class="flex items-center gap-4">
+                <button aria-label="Search" class="text-on-background hover:opacity-80 active:scale-95 transition-all">
+                    <span class="material-symbols-outlined">search</span>
+                </button>
+                <button class="hidden md:flex bg-primary text-white px-5 py-1.5 rounded-full text-sm font-bold shadow-lg shadow-primary/20 hover:scale-105 transition-all">로그인</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content: Centered container -->
+    <main class="pt-20 max-w-screen-xl mx-auto px-container-margin space-y-section-padding">
+        
+        <!-- Hero Banner: Original feel but responsive -->
+        <section class="relative rounded-3xl overflow-hidden aspect-[16/9] md:aspect-[21/7] bg-gradient-to-br from-[#0052dd] to-[#5400c3] group shadow-xl">
+            <div class="absolute inset-0 flex flex-col justify-center p-8 md:p-16 text-white z-10">
+                <span class="bg-white/20 backdrop-blur-md w-fit px-3 py-1 rounded-full text-[10px] md:text-xs font-bold mb-4 border border-white/30">단독 혜택</span>
+                <h1 class="text-3xl md:text-5xl font-jakarta font-extrabold mb-4 leading-tight">Galaxy Book6 Pro<br/>Campus Special</h1>
+                <p class="text-white/80 max-w-md mb-8 hidden md:block text-lg">오직 갤럭시 캠퍼스 회원들만을 위한 역대급 할인 혜택을 놓치지 마세요.</p>
+                <button class="bg-white text-primary px-8 py-3 rounded-full font-bold w-fit hover:scale-105 active:scale-95 transition-all shadow-lg">혜택 확인하기</button>
+            </div>
+            <img src="https://images.samsung.com/kdp/goods/2026/04/01/94ae01a5-72f8-407e-a679-107eb4ca961d.jpg" class="absolute right-0 top-0 h-full w-full object-cover opacity-40 md:opacity-100 md:w-1/2 mix-blend-screen" alt="Hero">
+        </section>
+
+        <!-- Quick Categories: Natural transition -->
+        <section>
+            <div class="grid grid-cols-4 md:grid-cols-4 gap-4">
+                <a href="store/code.html" class="flex flex-col items-center gap-3 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white shadow-sm border border-white flex items-center justify-center text-primary group-hover:shadow-md transition-all">
+                        <span class="material-symbols-outlined text-3xl md:text-4xl">smartphone</span>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-on-surface-variant">모바일</span>
+                </a>
+                <a href="store/code.html" class="flex flex-col items-center gap-3 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white shadow-sm border border-white flex items-center justify-center text-secondary group-hover:shadow-md transition-all">
+                        <span class="material-symbols-outlined text-3xl md:text-4xl">laptop_mac</span>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-on-surface-variant">PC/태블릿</span>
+                </a>
+                <a href="store/code.html" class="flex flex-col items-center gap-3 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white shadow-sm border border-white flex items-center justify-center text-tertiary group-hover:shadow-md transition-all">
+                        <span class="material-symbols-outlined text-3xl md:text-4xl">watch</span>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-on-surface-variant">웨어러블</span>
+                </a>
+                <a href="store/code.html" class="flex flex-col items-center gap-3 group">
+                    <div class="w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-white shadow-sm border border-white flex items-center justify-center text-pink-500 group-hover:shadow-md transition-all">
+                        <span class="material-symbols-outlined text-3xl md:text-4xl">headphones</span>
+                    </div>
+                    <span class="text-xs md:text-sm font-bold text-on-surface-variant">오디오</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Challenge of the Month Section -->
+        <section>
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold">이달의 챌린지</h2>
+                <button class="flex items-center gap-1 text-sm font-bold text-primary">
+                    전체보기 <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </button>
+            </div>
+            <div class="flex overflow-x-auto no-scrollbar gap-5 pb-4 -mx-container-margin px-container-margin">
+                <!-- Card 1: Photo Contest -->
+                <div class="min-w-[280px] md:min-w-[340px] aspect-[4/5] rounded-[32px] p-6 relative overflow-hidden flex flex-col justify-between shadow-lg" style="background: linear-gradient(135deg, #ff7eb3 0%, #ff758c 100%);">
+                    <div class="relative z-10">
+                        <span class="inline-block bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold mb-4 border border-white/20 uppercase">Photo Contest</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">캠퍼스 인생샷 챌린지</h3>
+                        <p class="text-white/80 text-sm leading-relaxed">여러분의 빛나는 캠퍼스 라이프를 한 장의 사진에 담아주세요!</p>
+                    </div>
+                    <div class="relative z-10 bg-white/20 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+                        <p class="text-[10px] font-bold text-white/70 mb-1 uppercase tracking-wider">Reward</p>
+                        <p class="text-white font-bold mb-3">베스트 샷 갤럭시 버즈4 프로</p>
+                        <button class="w-full bg-white text-[#ff758c] py-2.5 rounded-xl font-bold text-sm hover:bg-white/90 transition-all">참여하기</button>
+                    </div>
+                    <div class="absolute inset-0 opacity-40 pointer-events-none">
+                        <img src="assets/img/challenge_1.png" class="w-full h-full object-cover" alt="Challenge Background">
+                    </div>
+                </div>
+
+                <!-- Card 2: Study Challenge -->
+                <div class="min-w-[280px] md:min-w-[340px] aspect-[4/5] rounded-[32px] p-6 relative overflow-hidden flex flex-col justify-between shadow-lg" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+                    <div class="relative z-10">
+                        <span class="inline-block bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-bold mb-4 border border-white/20 uppercase">Study Challenge</span>
+                        <h3 class="text-2xl font-bold text-white mb-2">갤탭으로 갓생 살기</h3>
+                        <p class="text-white/80 text-sm leading-relaxed">태블릿을 활용한 나만의 공부 루틴을 인증해 주세요.</p>
+                    </div>
+                    <div class="relative z-10 bg-white/20 backdrop-blur-md rounded-2xl p-4 border border-white/20">
+                        <p class="text-[10px] font-bold text-white/70 mb-1 uppercase tracking-wider">Reward</p>
+                        <p class="text-white font-bold mb-3">선착순 100명 네이버 페이 5천원</p>
+                        <button class="w-full bg-white text-[#4facfe] py-2.5 rounded-xl font-bold text-sm hover:bg-white/90 transition-all">참여하기</button>
+                    </div>
+                    <div class="absolute inset-0 opacity-40 pointer-events-none">
+                        <img src="assets/img/challenge_2.png" class="w-full h-full object-cover" alt="Challenge Background">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Campus Pro Setups: New Feature -->
+        <section>
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold mb-1">전공별 맞춤 설정</h2>
+                    <p class="text-xs text-on-surface-variant font-medium text-opacity-70">선배들의 꿀팁이 담긴 갤럭시 설정을 그대로 내 기기에!</p>
+                </div>
+                <button class="text-primary font-bold text-sm">더보기</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Engineering -->
+                <div class="bg-white rounded-3xl p-5 border border-white shadow-sm hover:shadow-md transition-all flex items-center gap-4 group cursor-pointer">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-50 text-primary flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-3xl">precision_manufacturing</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm mb-1">공대생 끝판왕 세팅</h4>
+                        <p class="text-[10px] text-outline line-clamp-1">CAD, 코딩 앱 최적화 및 배터리 절약</p>
+                    </div>
+                    <button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-xl">download</span>
+                    </button>
+                </div>
+                <!-- Art/Design -->
+                <div class="bg-white rounded-3xl p-5 border border-white shadow-sm hover:shadow-md transition-all flex items-center gap-4 group cursor-pointer">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-50 text-secondary flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-3xl">palette</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm mb-1">미대생 감성 드로잉 세팅</h4>
+                        <p class="text-[10px] text-outline line-clamp-1">S펜 필압 최적화 및 디스플레이 색감</p>
+                    </div>
+                    <button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-xl">download</span>
+                    </button>
+                </div>
+                <!-- Business -->
+                <div class="bg-white rounded-3xl p-5 border border-white shadow-sm hover:shadow-md transition-all flex items-center gap-4 group cursor-pointer">
+                    <div class="w-14 h-14 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center shrink-0">
+                        <span class="material-symbols-outlined text-3xl">monitoring</span>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-bold text-sm mb-1">경영대 발표 왕 세팅</h4>
+                        <p class="text-[10px] text-outline line-clamp-1">덱스 모드 최적화 및 문서 공유 세팅</p>
+                    </div>
+                    <button class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center group-hover:bg-green-600 group-hover:text-white transition-all shadow-sm">
+                        <span class="material-symbols-outlined text-xl">download</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Store Section: Responsive Grid -->
+        <section>
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary" style='font-variation-settings: "FILL" 1;'>stars</span>
+                    실시간 베스트
+                </h2>
+                <a href="store/code.html" class="text-primary font-bold text-sm">더보기</a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Product 1 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-white shadow-sm hover:shadow-xl transition-all group cursor-pointer">
+                    <div class="aspect-square relative overflow-hidden bg-surface-container-low">
+                        <img src="https://images.samsung.com/kdp/goods/2026/04/01/94ae01a5-72f8-407e-a679-107eb4ca961d.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform" alt="Book">
+                        <div class="absolute top-3 left-3 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-full">BEST</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold mb-2 line-clamp-1">Galaxy Book6 Pro</h3>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="text-primary font-jakarta font-extrabold text-lg">1,450,000</span>
+                            <span class="text-[10px] text-outline line-through font-jakarta">1,890,000</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-blue-50 text-primary text-[10px] font-bold px-2 py-0.5 rounded border border-blue-100">학생 특가</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="bg-white rounded-3xl overflow-hidden border border-white shadow-sm hover:shadow-xl transition-all group cursor-pointer">
+                    <div class="aspect-square relative overflow-hidden bg-surface-container-low">
+                        <img src="https://images.samsung.com/kdp/goods/2026/02/10/da28f7af-a766-4bc5-ab98-b4282ed88664.png" class="w-full h-full object-cover group-hover:scale-110 transition-transform" alt="Buds">
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold mb-2 line-clamp-1">Galaxy Buds4 Pro</h3>
+                        <div class="flex items-baseline gap-2 mb-2">
+                            <span class="text-primary font-jakarta font-extrabold text-lg">199,000</span>
+                            <span class="text-[10px] text-outline line-through font-jakarta">279,000</span>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <span class="bg-blue-50 text-primary text-[10px] font-bold px-2 py-0.5 rounded border border-blue-100">단독 혜택</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section: Side by Side on Desktop -->
+        <section class="bg-white rounded-[32px] p-8 md:p-12 border border-white shadow-sm">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div>
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-2xl font-bold flex items-center gap-2">
+                            <span class="material-symbols-outlined text-red-500" style='font-variation-settings: "FILL" 1;'>local_fire_department</span>
+                            지금 뜨는 글
+                        </h2>
+                        <a href="community/code.html" class="text-secondary font-bold text-sm">더보기</a>
+                    </div>
+                    <div class="space-y-4">
+                        <a href="community/code.html" class="flex items-center gap-4 group">
+                            <span class="text-xl font-black text-primary w-6">1</span>
+                            <div class="flex-1 border-b border-surface-container-low pb-4 group-hover:border-primary transition-colors">
+                                <h3 class="font-bold mb-1 line-clamp-1">공강 시간에 가기 좋은 캠퍼스 근처 카페 TOP 5</h3>
+                                <div class="flex items-center gap-3 text-[10px] text-on-surface-variant font-bold">
+                                    <span class="text-secondary">캠퍼스 팁</span>
+                                    <span>3분 전</span>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="community/code.html" class="flex items-center gap-4 group">
+                            <span class="text-xl font-black text-outline w-6">2</span>
+                            <div class="flex-1 border-b border-surface-container-low pb-4 group-hover:border-primary transition-colors">
+                                <h3 class="font-bold mb-1 line-clamp-1">갤럭시 북4 프로 한 달 사용기 (feat. 코딩용)</h3>
+                                <div class="flex items-center gap-3 text-[10px] text-on-surface-variant font-bold">
+                                    <span class="text-primary">IT 기기</span>
+                                    <span>15분 전</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden lg:block">
+                    <h2 class="text-2xl font-bold mb-6">캠퍼스 라이프</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="relative rounded-2xl overflow-hidden aspect-square">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlTJmuJsxmYZ3boIo7RxikMKILMt036FxLlnQ2Q_njc9jDHZ-8RQ7s3nw5ogjFNpxSt3L2Wm9GJlfGH7nGGkYkPa9D2HMwzrG3aR_vBGclSnQzSowBfEQ21t-0rdbOiN6nr8wZItkgihLeXRggZKLG8YH6yD_A_HK5e13-tJH_mkh54EYu6AIE3Lw6EOq0ubXuCmwbSVTaGAvSeth_zGIOHM1uGGCwS-GzaoTjQFuEso6OGHDwazyc8ZAI7g0xzm_fnOD2Q3Vpnmg" class="w-full h-full object-cover" alt="Life">
+                        </div>
+                        <div class="relative rounded-2xl overflow-hidden aspect-square">
+                            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJwffoOL2nQ3-yVu6SvPymttC_UaTEoo5NCSxSdM1Mmq2Od1cskugG4iXNErljKCIfYs-GcpzJijo6ZqjCop_lD0CW6eIIv38iYisYYn0QpeeXXs73ekWsPuw3ccZWhTNA2rR0-BFtxQRw73Y4clWBJYLSx2GHh0MiWgnpNc0wqI1SVI6JjkCLyA-ozL3pTOXW6foel_2Z7G2uXWuGGuKVUkLDczfFGCFWMEUpjhAo2H_9oFCbXBpB_p8UKuf37H0qpkdvnabkAgw" class="w-full h-full object-cover" alt="Life">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation: Mobile Only (Exactly as original design) -->
+    <nav class="fixed bottom-0 w-full z-50 bg-white/80 backdrop-blur-xl border-t border-white/20 rounded-t-3xl shadow-[0_-4px_20px_rgba(33,103,255,0.08)] flex justify-around items-center h-20 pb-safe md:hidden">
+        <a href="index.html" class="flex flex-col items-center justify-center text-primary w-16 h-14 relative after:content-[''] after:absolute after:-bottom-1 after:w-1 after:h-1 after:bg-primary after:rounded-full">
+            <span class="material-symbols-outlined" style='font-variation-settings: "FILL" 1;'>home</span>
+            <span class="font-jakarta text-[10px] font-bold mt-1">홈</span>
+        </a>
+        <a href="store/code.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all w-16 h-14">
+            <span class="material-symbols-outlined">shopping_bag</span>
+            <span class="font-jakarta text-[10px] font-bold mt-1">스토어</span>
+        </a>
+        <a href="community/code.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all w-16 h-14">
+            <span class="material-symbols-outlined">group</span>
+            <span class="font-jakarta text-[10px] font-bold mt-1">커뮤니티</span>
+        </a>
+        <a href="profile/code.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-all w-16 h-14">
+            <span class="material-symbols-outlined">person</span>
+            <span class="font-jakarta text-[10px] font-bold mt-1">내 정보</span>
+        </a>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('side-menu');
+            const overlay = document.getElementById('side-menu-overlay');
+            const isOpen = menu.classList.contains('translate-x-0');
+            
+            if (isOpen) {
+                menu.classList.remove('translate-x-0');
+                menu.classList.add('-translate-x-full');
+                overlay.classList.add('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'auto';
+            } else {
+                menu.classList.remove('-translate-x-full');
+                menu.classList.add('translate-x-0');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+    </script>
+</body>
+</html>
